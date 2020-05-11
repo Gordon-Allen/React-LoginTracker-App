@@ -1,17 +1,55 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { isLoading: false };
+  }
+  render() {
+    return (
+      <div>
+        <Header />
+        <Body />
+        <Footer />
+      </div>
+    );
+  }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class Body extends React.Component {
+  constructor() {
+    super();
+    this.state = { isLoading: true };
+  }
+  // componentWillMount() {
+  //   console.log("This is the will mount");
+  // }
+
+  getData = () => {
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      });
+    }, 3000);
+  };
+
+  componentDidMount() {
+    this.getData();
+    console.log("this is after getData() is called");
+  }
+
+  render() {
+    return <div>{this.state.isLoading ? "Loading" : "This is my info"}</div>;
+  }
+}
+
+function Header() {
+  return <p> This is G-Man's header</p>;
+}
+
+function Footer() {
+  return <p>This is G-Man's footer</p>;
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
