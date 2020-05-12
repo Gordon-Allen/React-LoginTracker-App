@@ -22,9 +22,6 @@ class Body extends React.Component {
     super();
     this.state = { isLoading: true };
   }
-  // componentWillMount() {
-  //   console.log("This is the will mount");
-  // }
 
   getData = () => {
     setTimeout(() => {
